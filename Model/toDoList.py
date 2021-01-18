@@ -8,5 +8,4 @@ class ToDoList:
             for line in file:
                 toDoList.append(line)
 
-
         return toDoList
