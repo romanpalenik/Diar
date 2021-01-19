@@ -1,2 +1,3 @@
-Toto su eventy ktore nas cakaju
-napriklad skuska z UI
+2021, 9, 1;Toto su eventy ktore nas cakaju
+2021, 1, 1;napriklad skuska z UI
+2021, 12, 1;napriklad skuska z UI

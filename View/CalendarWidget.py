@@ -1,15 +1,30 @@
+import calendar
+
 from PyQt5.QtWidgets import *
-from PyQt5 import QtCore, QtGui
+
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 
 
-class Calendar(QCalendarWidget):
+class dateCalendar(QCalendarWidget):
 
-    # constructor
     def __init__(self, parent=None):
-        super(Calendar, self).__init__(parent)
+        super().__init__(parent)
+        self.color = QColor(self.palette().color(QPalette.Highlight))
+        self.color.setAlpha(150)
+        # self.selectionChanged.connect(self.updateCells)
+        self.dateList = []
 
-    def mouseDoubleClickEvent(self, event):
-        print("Mouse Double Click Event")
+    def paintCell(self, painter, rect, date):
+        # calling original paintCell to draw the actual calendar
+        QCalendarWidget.paintCell(self, painter, rect, date)
+
+        # highlight a particular date
+        if date in self.dateList:
+            painter.fillRect(rect, self.color)
+
+    def selectDates(self, qdatesList):
+        self.dateList = qdatesList
+        # this redraws the calendar with your updated date list
+        self.updateCells()

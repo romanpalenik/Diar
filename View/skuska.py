@@ -3,6 +3,7 @@ from datetime import datetime
 import calendar
 from PyQt5.QtWidgets import QApplication, QWidget, QCalendarWidget
 from PyQt5.QtCore import QDate
+from ApkaNaSkolu.View.CalendarWidget import *
 
 
 class CalendarDemo(QWidget):
@@ -18,7 +19,7 @@ class CalendarDemo(QWidget):
 		self.initUI()
 
 	def initUI(self):
-		self.calendar = QCalendarWidget(self)
+		self.calendar = dateCalendar()
 		self.calendar.move(20, 20)
 		self.calendar.setGridVisible(True)
 
