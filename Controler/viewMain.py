@@ -2,7 +2,13 @@ from PySide2.QtCore import *
 from PySide2.QtGui import QTextCharFormat, QPainter
 from PySide2.QtWidgets import *
 from PySide2 import QtWidgets, QtGui
-from ApkaNaSkolu.Model.toDoList import *
+
+import repackage
+
+repackage.up(2)
+
+from ApkaNaSkolu.Controler.Subject_section import OtherWindow
+from ApkaNaSkolu.Model.loadFromdatabases import *
 from ApkaNaSkolu.Model.calendarEvents import *
 from ApkaNaSkolu.View import app
 
@@ -11,39 +17,79 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
         self.setupUi(self)
-        self.list_widget()
-        self.progressBar.setVisible(False)
-        self.progressBar_2.setVisible(False)
-        self.progressBar_3.setVisible(False)
-        self.progressBar_4.setVisible(False)
-        self.progressBar_5.setVisible(False)
+
+        # section with setting label with subject part
         self.subject1.installEventFilter(self)
         self.subject2.installEventFilter(self)
         self.subject3.installEventFilter(self)
         self.subject4.installEventFilter(self)
         self.subject5.installEventFilter(self)
-        self.subject_with_status_bars = {self.subject1: self.progressBar, self.subject2: self.progressBar_2, self.subject3: self.progressBar_3, self.subject4: self.progressBar_4, self.subject5: self.progressBar_5}
+        self.subjects_with_status_bars = {self.subject1: self.progressBar, self.subject2: self.progressBar_2,
+                                          self.subject3: self.progressBar_3, self.subject4: self.progressBar_4,
+                                          self.subject5: self.progressBar_5}
+
+        self.setting_calendar()
+
+        self.todo = Load_From_databases()
+        self.addSubject.clicked.connect(self.change_screen)
+        self.event_types = self.todo.load_events_types()
+        self.comboBox.addItems(self.event_types)
+
+        self.label_5.setPixmap(
+            '/home/roman/Skola/ProjektyMimo/ApkaNaSkolu/View/Screenshot from 2021-01-21 14-39-23.png')
+
+        self.set_Subjects_progress_bar()
+        self.set_subject()
+        self.list_widget()
+
+    def setting_calendar(self):
+        """method to set every events that is connected with calendar such as color events"""
         self.cal.installEventFilter(self)
         self.calendar_events = CalendarEvents()
         self.print_calendar()
+        self.nearestEvent = self.calendar_events.locate_nearest_event()
+        # if there is nearest event then set text else nothing
+        if self.nearestEvent != '0':
+            self.nearestEvent_label.setText(self.calendar_events.events[self.nearestEvent][0])
+
+
+        else:
+            self.nearestEvent_label.setText('Nič')
+        self.saveEvent.clicked.connect(self.save_new_event)
+
+    def setting_pixmaps(self):
+        """create legends with pictures"""
 
     def list_widget(self):
         """Show to do list"""
-        todo = ToDoList()
-        items = todo.load_list()
+        items = self.todo.load_list()
         self.listWidget.addItems(items)
+
+    def set_Subjects_progress_bar(self):
+        self.progressBar.setVisible(False)
+        self.progressBar_2.setVisible(False)
+        self.progressBar_3.setVisible(False)
+        self.progressBar_4.setVisible(False)
+        self.progressBar_5.setVisible(False)
+
+    def set_subject(self):
+        subjects_name = self.todo.load_events_types()
+        subjects_label = list(self.subjects_with_status_bars.keys())
+        for i in range(len(subjects_label)):
+            subjects_label[i].setText(self.event_types[i])
 
     def eventFilter(self, object, event):
         """function to show progress bar by every subject"""
+
         if type(object) == QCalendarWidget and event.type() == QEvent.MouseButtonRelease:
             self.show_selected_event()
 
         if type(object) == QLabel:
             if event.type() == QEvent.Enter:
-                self.subject_with_status_bars[object].setVisible(True)
+                self.subjects_with_status_bars[object].setVisible(True)
 
             elif event.type() == QEvent.Leave:
-                self.subject_with_status_bars[object].setVisible(False)
+                self.subjects_with_status_bars[object].setVisible(False)
 
     def print_calendar(self):
         """Paint those dates that are booked"""
@@ -51,28 +97,42 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         format.setBackground(Qt.yellow)
 
         for date in self.calendar_events.events.keys():
-
-            print(date)
             date = date.split(',')
             date = QDate(int(date[0]), int(date[2]), int(date[1]))
-            print(date)
             self.cal.setDateTextFormat(date, format)
 
     def show_selected_event(self):
+        """Show booked event in current text field"""
+        date = self.cal.selectedDate()
+        date = date.toString("yyyy, d, M")
 
-        self.text_event.setText('ahoj')
+        if date in self.calendar_events.events.keys():
+            self.text_event.setText(self.calendar_events.events[date][0])
+            self.text_event_2.setText(self.calendar_events.events[date][2])
 
+    def save_new_event(self):
+        date = self.cal.selectedDate()
+        date = date.toString("yyyy, d, M")
 
+        text = self.text_event.toPlainText()
+        type = self.comboBox.currentText()
+        time = self.text_event_2.toPlainText()
 
+        self.calendar_events.save_new_event(text, date, type, time)
+
+    def change_screen(self):
+        # create another windown
+        self.window = QtWidgets.QMainWindow()
+        ui = OtherWindow()
+        ui.setupUi(self.window)
+        ui.start()
+        self.window.show()
 
     def add_event_to_cal(self):
 
         date = self.cal.selectedDate()
         date = date.toString("yyyy.MM.dd")
         print(date)
-
-    def mouseDoubleClickEvent(self, event):
-        print("Mouse Double Click Event")
 
 
 if __name__ == '__main__':

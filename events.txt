@@ -1,3 +1,4 @@
 2021, 9, 1;Toto su eventy ktore nas cakaju
-2021, 1, 1;napriklad skuska z UI
-2021, 12, 1;napriklad skuska z UI
+2021, 1, 1;alebo OS
+2021, 22, 1;napriklad skuska z UI
+2021, 21, 1;napriklad skuska z PKS
