@@ -30,7 +30,7 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
 
         self.setting_calendar()
 
-        self.todo = Load_From_databases()
+        self.todo = Databases()
         self.addSubject.clicked.connect(self.change_screen)
         self.event_types = self.todo.load_events_types()
         self.comboBox.addItems(self.event_types)
@@ -38,9 +38,29 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         self.label_5.setPixmap(
             '/home/roman/Skola/ProjektyMimo/ApkaNaSkolu/View/Screenshot from 2021-01-21 14-39-23.png')
 
+        self.pushButton.clicked.connect(self.on_addItemButton_clicked)
+        self.pushButton_2.clicked.connect(self.on_deleteItemButton_clicked)
+
         self.set_Subjects_progress_bar()
         self.set_subject()
         self.list_widget()
+
+    def on_addItemButton_clicked(self):
+
+        item = QListWidgetItem(self.newItemToDo.toPlainText())
+        self.listWidget.addItem(item)
+        app.processEvents()
+        self.whole_to_do.append(self.newItemToDo.toPlainText())
+        self.todo.save_to_do_list(self.whole_to_do)
+
+    def on_deleteItemButton_clicked(self):
+        if self.listWidget.currentItem().backgroundColor() == 'red':
+            return
+        item = self.listWidget.currentItem().text()
+        self.whole_to_do = self.todo.delete_from_list(item, self.whole_to_do)
+        self.listWidget.currentItem().setBackgroundColor('red')
+        app.processEvents()
+        self.todo.save_to_do_list(self.whole_to_do)
 
     def setting_calendar(self):
         """method to set every events that is connected with calendar such as color events"""
@@ -62,8 +82,8 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
 
     def list_widget(self):
         """Show to do list"""
-        items = self.todo.load_list()
-        self.listWidget.addItems(items)
+        self.whole_to_do = self.todo.load_list()
+        self.listWidget.addItems(self.whole_to_do)
 
     def set_Subjects_progress_bar(self):
         self.progressBar.setVisible(False)

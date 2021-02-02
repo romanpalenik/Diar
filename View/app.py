@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
         self.subject5.setGeometry(QRect(10, 310, 67, 17))
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(510, 590, 89, 25))
+        self.pushButton.setGeometry(QRect(520, 590, 81, 31))
         self.progressBar = QProgressBar(self.centralwidget)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setEnabled(True)
@@ -108,6 +108,12 @@ class Ui_MainWindow(object):
         self.comboBox = QComboBox(self.centralwidget)
         self.comboBox.setObjectName(u"comboBox")
         self.comboBox.setGeometry(QRect(870, 140, 181, 31))
+        self.newItemToDo = QTextEdit(self.centralwidget)
+        self.newItemToDo.setObjectName(u"newItemToDo")
+        self.newItemToDo.setGeometry(QRect(350, 590, 161, 31))
+        self.pushButton_2 = QPushButton(self.centralwidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(620, 590, 89, 25))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -139,5 +145,6 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u010cas", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"15", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Akcia", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
     # retranslateUi
 

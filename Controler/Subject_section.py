@@ -1,6 +1,8 @@
 import repackage
 
-from ApkaNaSkolu.Model.loadFromdatabases import Load_From_databases
+
+from ApkaNaSkolu.Model.loadFromdatabases import Databases
+
 
 repackage.up(2)
 
@@ -13,12 +15,22 @@ class OtherWindow(Ui_MainWindow2, QtWidgets.QMainWindow):
         super(OtherWindow, self).__init__()
         self.setupUi(self)
         self.subject1.setWindowTitle('ahoj')
+        self.pushButton_2.clicked.connect(self.on_addItemButton_clicked)
 
     def start(self):
         pass
 
+
+
+    def on_addItemButton_clicked(self):
+        item = QListWidgetItem("New Item")
+        self.listWidget.addItem(item)
+
+
+
+
     def set_subject(self):
-        self.database = Load_From_databases()
+        self.database = Databases()
         subjects = self.database.load_events_types()
         subjects_label = list(self.subjects_with_status_bars.keys())
         for i in range(len(subjects_label)):
