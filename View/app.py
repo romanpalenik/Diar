@@ -9,7 +9,6 @@
 ################################################################################
 
 from PySide2.QtCore import *
-from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 
@@ -28,7 +27,7 @@ class Ui_MainWindow(object):
         self.addSubject.setGeometry(QRect(10, 400, 131, 21))
         self.listWidget = QListWidget(self.centralwidget)
         self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(350, 390, 256, 192))
+        self.listWidget.setGeometry(QRect(330, 340, 256, 192))
         self.line = QFrame(self.centralwidget)
         self.line.setObjectName(u"line")
         self.line.setGeometry(QRect(260, 0, 20, 651))
@@ -52,7 +51,7 @@ class Ui_MainWindow(object):
         self.subject5.setGeometry(QRect(10, 310, 67, 17))
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(520, 590, 81, 31))
+        self.pushButton.setGeometry(QRect(500, 540, 81, 31))
         self.progressBar = QProgressBar(self.centralwidget)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setEnabled(True)
@@ -110,10 +109,13 @@ class Ui_MainWindow(object):
         self.comboBox.setGeometry(QRect(870, 140, 181, 31))
         self.newItemToDo = QTextEdit(self.centralwidget)
         self.newItemToDo.setObjectName(u"newItemToDo")
-        self.newItemToDo.setGeometry(QRect(350, 590, 161, 31))
+        self.newItemToDo.setGeometry(QRect(330, 540, 161, 31))
         self.pushButton_2 = QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(620, 590, 89, 25))
+        self.pushButton_2.setGeometry(QRect(500, 580, 81, 31))
+        self.label_6 = QLabel(self.centralwidget)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(330, 580, 161, 31))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -137,7 +139,7 @@ class Ui_MainWindow(object):
         self.subject3.setText(QCoreApplication.translate("MainWindow", u"PSI", None))
         self.subject4.setText(QCoreApplication.translate("MainWindow", u"Bezpe\u010dnost", None))
         self.subject5.setText(QCoreApplication.translate("MainWindow", u"VAVA", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Prida\u0165 ", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Najbli\u017e\u0161ie n\u00e1s \u010dak\u00e1: ", None))
         self.nearestEvent_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.saveEvent.setText(QCoreApplication.translate("MainWindow", u"Ulozit", None))
@@ -145,6 +147,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u010cas", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"15", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Akcia", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Odstanit", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u010cerven\u00e9 sa vyma\u017e\u00fa", None))
     # retranslateUi
 

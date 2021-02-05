@@ -1,22 +1,29 @@
 from PySide2.QtCore import *
-from PySide2.QtGui import QTextCharFormat, QPainter
+from PySide2.QtGui import QTextCharFormat, QDesktopServices
 from PySide2.QtWidgets import *
 from PySide2 import QtWidgets, QtGui
+from PySide2.QtCore import QThread
+from PySide2.QtCore import SIGNAL, QObject
 
 import repackage
 
+from ApkaNaSkolu.Controler.Subject_section import OtherWindow
+
 repackage.up(2)
 
-from ApkaNaSkolu.Controler.Subject_section import OtherWindow
 from ApkaNaSkolu.Model.loadFromdatabases import *
 from ApkaNaSkolu.Model.calendarEvents import *
-from ApkaNaSkolu.View import app
+from ApkaNaSkolu.View import app, scenes
 
 
-class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
+class Scennes(scenes.Ui_Form, QtWidgets.QStackedWidget):
     def __init__(self):
-        super(MyWindow, self).__init__()
+        super(Scennes, self).__init__()
         self.setupUi(self)
+
+        # self.thread = QThread()
+        # self.thread.started.connect(self.new_thread)
+        # self.thread.start()
 
         # section with setting label with subject part
         self.subject1.installEventFilter(self)
@@ -38,32 +45,37 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         self.label_5.setPixmap(
             '/home/roman/Skola/ProjektyMimo/ApkaNaSkolu/View/Screenshot from 2021-01-21 14-39-23.png')
 
-        self.pushButton.clicked.connect(self.on_addItemButton_clicked)
-        self.pushButton_2.clicked.connect(self.on_deleteItemButton_clicked)
+        self.pushButton.clicked.connect(self.add_item_toDo)
+        self.pushButton_2.clicked.connect(self.delete_item_from_toDo)
+        self.button_mainPage.clicked.connect(self.go_to_main_frame)
+
+        window.start(self)
+        self.button_cviko_link.clicked.connect(window.open_link)
+        self.pushButton_6.clicked.connect(window.change_to_do)
 
         self.set_Subjects_progress_bar()
         self.set_subject()
         self.list_widget()
 
-    def on_addItemButton_clicked(self):
-
+    def add_item_toDo(self):
+        """add new item to to_do_list, reads it from text line"""
         item = QListWidgetItem(self.newItemToDo.toPlainText())
         self.listWidget.addItem(item)
         app.processEvents()
         self.whole_to_do.append(self.newItemToDo.toPlainText())
         self.todo.save_to_do_list(self.whole_to_do)
 
-    def on_deleteItemButton_clicked(self):
+    def delete_item_from_toDo(self):
+        """delete selected item from to_to_do_list"""
         if self.listWidget.currentItem().backgroundColor() == 'red':
             return
         item = self.listWidget.currentItem().text()
         self.whole_to_do = self.todo.delete_from_list(item, self.whole_to_do)
         self.listWidget.currentItem().setBackgroundColor('red')
-        app.processEvents()
         self.todo.save_to_do_list(self.whole_to_do)
 
     def setting_calendar(self):
-        """method to set every events that is connected with calendar such as color events"""
+        """method to set every events that is connected with calendar, such as color events"""
         self.cal.installEventFilter(self)
         self.calendar_events = CalendarEvents()
         self.print_calendar()
@@ -71,7 +83,6 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         # if there is nearest event then set text else nothing
         if self.nearestEvent != '0':
             self.nearestEvent_label.setText(self.calendar_events.events[self.nearestEvent][0])
-
 
         else:
             self.nearestEvent_label.setText('Nič')
@@ -86,6 +97,7 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         self.listWidget.addItems(self.whole_to_do)
 
     def set_Subjects_progress_bar(self):
+        """make every progress bar invisible on default"""
         self.progressBar.setVisible(False)
         self.progressBar_2.setVisible(False)
         self.progressBar_3.setVisible(False)
@@ -93,14 +105,13 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         self.progressBar_5.setVisible(False)
 
     def set_subject(self):
-        subjects_name = self.todo.load_events_types()
+        """name every label with right name of subject"""
         subjects_label = list(self.subjects_with_status_bars.keys())
         for i in range(len(subjects_label)):
             subjects_label[i].setText(self.event_types[i])
 
     def eventFilter(self, object, event):
         """function to show progress bar by every subject"""
-
         if type(object) == QCalendarWidget and event.type() == QEvent.MouseButtonRelease:
             self.show_selected_event()
 
@@ -141,22 +152,19 @@ class MyWindow(app.Ui_MainWindow, QtWidgets.QMainWindow):
         self.calendar_events.save_new_event(text, date, type, time)
 
     def change_screen(self):
-        # create another windown
-        self.window = QtWidgets.QMainWindow()
-        ui = OtherWindow()
-        ui.setupUi(self.window)
-        ui.start()
-        self.window.show()
+        """set current screen to second"""
+        print(self.currentIndex())
+        self.stackedWidget.setCurrentIndex(1)
 
-    def add_event_to_cal(self):
-
-        date = self.cal.selectedDate()
-        date = date.toString("yyyy.MM.dd")
-        print(date)
+    def go_to_main_frame(self):
+        """set current screen to main frame"""
+        self.stackedWidget.setCurrentIndex(0)
 
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication()
-    qt_app = MyWindow()
-    qt_app.show()
-    app.exec_()
+# to work you have to create all scenes and connected classes together and in main
+window = OtherWindow()
+
+app = QtWidgets.QApplication()
+qt_app = Scennes()
+qt_app.show()
+app.exec_()

@@ -43,8 +43,8 @@
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>390</y>
+      <x>330</x>
+      <y>340</y>
       <width>256</width>
       <height>192</height>
      </rect>
@@ -134,14 +134,14 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>590</y>
+      <x>500</x>
+      <y>540</y>
       <width>81</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Edit</string>
+     <string>Pridať </string>
     </property>
    </widget>
    <widget class="QProgressBar" name="progressBar">
@@ -349,8 +349,8 @@
    <widget class="QTextEdit" name="newItemToDo">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>590</y>
+      <x>330</x>
+      <y>540</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -359,14 +359,27 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>590</y>
-      <width>89</width>
-      <height>25</height>
+      <x>500</x>
+      <y>580</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Odstanit</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>580</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Červené sa vymažú</string>
     </property>
    </widget>
   </widget>

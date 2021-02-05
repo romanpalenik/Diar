@@ -1,8 +1,6 @@
 import repackage
 
-
 from ApkaNaSkolu.Model.loadFromdatabases import Databases
-
 
 repackage.up(2)
 
@@ -10,28 +8,17 @@ from PySide2 import QtWidgets, QtGui
 from ApkaNaSkolu.View.sekcia import *
 
 
-class OtherWindow(Ui_MainWindow2, QtWidgets.QMainWindow):
-    def __init__(self):
-        super(OtherWindow, self).__init__()
-        self.setupUi(self)
-        self.subject1.setWindowTitle('ahoj')
-        self.pushButton_2.clicked.connect(self.on_addItemButton_clicked)
+class OtherWindow:
 
-    def start(self):
-        pass
+    def start(self, win):
+        """this function is call fist to set attributes """
+        self.win = win
 
+    def open_link(self):
+        """open url links in default browser"""
+        link = "http://www.google.com"
+        QDesktopServices.openUrl(QUrl(link))
 
-
-    def on_addItemButton_clicked(self):
-        item = QListWidgetItem("New Item")
-        self.listWidget.addItem(item)
-
-
-
-
-    def set_subject(self):
-        self.database = Databases()
-        subjects = self.database.load_events_types()
-        subjects_label = list(self.subjects_with_status_bars.keys())
-        for i in range(len(subjects_label)):
-            subjects_label[i].setText(subjects[i])
+    def change_to_do(self):
+        pole = ['1', '2']
+        self.win.listWidget_2.addItems(pole)
