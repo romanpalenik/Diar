@@ -1,5 +1,5 @@
 AZA
-Databazy
+DBS
 PSI
 Bezpečnosť
 VAVA

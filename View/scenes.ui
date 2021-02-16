@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1067</width>
+    <width>1066</width>
     <height>681</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label_5">
@@ -42,22 +42,6 @@
       <string>15</string>
      </property>
     </widget>
-    <widget class="QProgressBar" name="progressBar">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>70</y>
-       <width>118</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
@@ -74,8 +58,8 @@
     <widget class="QTextEdit" name="newItemToDo">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>520</y>
+       <x>290</x>
+       <y>500</y>
        <width>161</width>
        <height>31</height>
       </rect>
@@ -169,19 +153,6 @@
       </rect>
      </property>
     </widget>
-    <widget class="QProgressBar" name="progressBar_4">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>250</y>
-       <width>118</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
     <widget class="QTextEdit" name="text_event">
      <property name="geometry">
       <rect>
@@ -257,8 +228,8 @@
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>560</y>
+       <x>460</x>
+       <y>540</y>
        <width>81</width>
        <height>31</height>
       </rect>
@@ -270,8 +241,8 @@
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>520</y>
+       <x>460</x>
+       <y>500</y>
        <width>81</width>
        <height>31</height>
       </rect>
@@ -296,8 +267,8 @@
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>560</y>
+       <x>290</x>
+       <y>540</y>
        <width>161</width>
        <height>31</height>
       </rect>
@@ -319,32 +290,6 @@
       <enum>Qt::Vertical</enum>
      </property>
     </widget>
-    <widget class="QProgressBar" name="progressBar_5">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>310</y>
-       <width>118</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
-    <widget class="QProgressBar" name="progressBar_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>130</y>
-       <width>118</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="value">
-      <number>24</number>
-     </property>
-    </widget>
     <widget class="QLabel" name="nearestEvent_label">
      <property name="geometry">
       <rect>
@@ -361,24 +306,11 @@
     <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>320</y>
+       <x>290</x>
+       <y>290</y>
        <width>256</width>
        <height>192</height>
       </rect>
-     </property>
-    </widget>
-    <widget class="QProgressBar" name="progressBar_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>190</y>
-       <width>118</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="value">
-      <number>24</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -392,6 +324,19 @@
      </property>
      <property name="text">
       <string>Akcia</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deleteEvent">
+     <property name="geometry">
+      <rect>
+       <x>960</x>
+       <y>160</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Odstranit</string>
      </property>
     </widget>
    </widget>
@@ -409,19 +354,6 @@
       <string>Hlavna strana</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_6">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>470</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="button_prednaska_link">
      <property name="geometry">
       <rect>
@@ -432,15 +364,15 @@
       </rect>
      </property>
      <property name="text">
-      <string>prednaska</string>
+      <string>Prednáška</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="email_prednaska">
      <property name="geometry">
       <rect>
-       <x>910</x>
-       <y>50</y>
-       <width>67</width>
+       <x>880</x>
+       <y>40</y>
+       <width>161</width>
        <height>16</height>
       </rect>
      </property>
@@ -458,7 +390,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>link na prednasku</string>
+      <string>link na prednášku</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_13">
@@ -502,12 +434,12 @@
       <rect>
        <x>580</x>
        <y>40</y>
-       <width>67</width>
-       <height>17</height>
+       <width>111</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>cviko</string>
+      <string>link na cvičenie</string>
      </property>
     </widget>
     <widget class="QListWidget" name="listWidget_2">
@@ -515,8 +447,8 @@
       <rect>
        <x>240</x>
        <y>230</y>
-       <width>256</width>
-       <height>192</height>
+       <width>321</width>
+       <height>191</height>
       </rect>
      </property>
     </widget>
@@ -563,7 +495,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>370</y>
+       <y>330</y>
        <width>67</width>
        <height>17</height>
       </rect>
@@ -575,9 +507,9 @@
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>50</y>
-       <width>111</width>
+       <x>10</x>
+       <y>40</y>
+       <width>171</width>
        <height>16</height>
       </rect>
      </property>
@@ -585,12 +517,12 @@
       <string>Kedy v rozvrhu</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="name_prednaska">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>50</y>
-       <width>67</width>
+       <x>740</x>
+       <y>40</y>
+       <width>151</width>
        <height>16</height>
       </rect>
      </property>
@@ -608,14 +540,14 @@
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Cvičenie</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_2">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>365</y>
+       <x>110</x>
+       <y>330</y>
        <width>86</width>
        <height>25</height>
       </rect>
@@ -725,6 +657,129 @@
       <string>Otvorit súbor</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_backround">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>-10</y>
+       <width>1039</width>
+       <height>651</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Backround</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_dokumentovyserver">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>470</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Dokumentovy server</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_cviko">
+     <property name="geometry">
+      <rect>
+       <x>740</x>
+       <y>60</y>
+       <width>67</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>meno</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="email_cviko">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>60</y>
+       <width>161</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>email</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="it_was_copied">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>10</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Skopírované</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="newItemToDo_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>360</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cviko">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <zorder>label_backround</zorder>
+    <zorder>button_mainPage</zorder>
+    <zorder>button_prednaska_link</zorder>
+    <zorder>email_prednaska</zorder>
+    <zorder>label_14</zorder>
+    <zorder>label_13</zorder>
+    <zorder>pushButton_4</zorder>
+    <zorder>textEdit</zorder>
+    <zorder>label_15</zorder>
+    <zorder>listWidget_2</zorder>
+    <zorder>label_9</zorder>
+    <zorder>pushButton_3</zorder>
+    <zorder>line_2</zorder>
+    <zorder>label_12</zorder>
+    <zorder>label_10</zorder>
+    <zorder>name_prednaska</zorder>
+    <zorder>button_cviko_link</zorder>
+    <zorder>comboBox_2</zorder>
+    <zorder>label_11</zorder>
+    <zorder>line_3</zorder>
+    <zorder>pushButton_5</zorder>
+    <zorder>pushButton_7</zorder>
+    <zorder>pushButton_8</zorder>
+    <zorder>pushButton_9</zorder>
+    <zorder>pushButton_10</zorder>
+    <zorder>open_file</zorder>
+    <zorder>button_dokumentovyserver</zorder>
+    <zorder>name_cviko</zorder>
+    <zorder>email_cviko</zorder>
+    <zorder>it_was_copied</zorder>
+    <zorder>newItemToDo_2</zorder>
+    <zorder>cviko</zorder>
    </widget>
   </widget>
  </widget>
